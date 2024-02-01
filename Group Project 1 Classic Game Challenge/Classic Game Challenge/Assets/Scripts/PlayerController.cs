@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rigi;
-    //public Animator ani;
+    public Animator ani;
     Vector2 playerMovement;
 
 
@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
         playerMovement.y = Input.GetAxisRaw("Vertical");
 
         // Player Animation
-        //ani.SetFloat("Horizontal", playerMovement.x);
-        //ani.SetFloat("Horizontal", playerMovement.y);
-        //ani.SetFloat("Horizontal", playerMovement.sqrMagnitude);
+        ani.SetFloat("Horizontal", playerMovement.x);
+        ani.SetFloat("Vertical", playerMovement.y);
+        ani.SetFloat("Speed", playerMovement.sqrMagnitude);
     }
 
     void FixedUpdate()
