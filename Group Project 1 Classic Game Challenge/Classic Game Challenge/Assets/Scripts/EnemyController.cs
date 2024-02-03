@@ -10,17 +10,32 @@ public class EnemyController : MonoBehaviour
     //[SerializeField] private float attackRate = 0.5f;
     //private float attackAble;
 
+    private Transform target;
+    public float moveSpeed = 2f;
+
+    
+
+
+    private void OnStart()
+    {
+        //rigi = GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void FixedUpdate()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
     }
 
     // This function will detect if the enemy collides with the "Player" game object. If it does, damage will be dealt to the player and the enemy will destroy on collision. 
@@ -42,7 +57,7 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<PlayerHealth>().UpdateHealth(-attackDamage);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }
