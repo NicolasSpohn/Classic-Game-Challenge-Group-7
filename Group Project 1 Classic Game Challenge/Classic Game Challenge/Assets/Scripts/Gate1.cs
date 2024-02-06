@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Gate1 : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,9 +18,15 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        PlayerController inventory = other.GetComponent<PlayerController>();
+        //inventory.keyCount--;
+        //Destroy(gameObject);
         if (other.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            if(inventory.keyCount == 1)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rigi;
     public Animator ani;
     Vector2 playerMovement;
+    public int keyCount = 0;
 
 
     // Start is called before the first frame update
@@ -33,5 +34,13 @@ public class PlayerController : MonoBehaviour
     {
         // Player Movement
         rigi.MovePosition(rigi.position + playerMovement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Key")
+        {
+            keyCount++;
+        }
     }
 }
